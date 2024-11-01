@@ -1,0 +1,48 @@
+<%- include('layout/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto mt-4">
+            <div class="card shadow">
+                <div class="card-header bg-dark">
+                    <h5 class="text-light">Editar Ocorrência (<%= user.categoria %>)</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form action="/update/<%= user._id %>" method="post" id="add-form" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="categoria">Categoria</label>
+                            <select name="categoria" class="form-control form-control-lg" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="Incidente com dano material" <%= user.categoria === "Incidente com dano material" ? "selected" : "" %>>Incidente com dano material</option>
+                                <option value="Incidente com dano ambiental" <%= user.categoria === "Incidente com dano ambiental" ? "selected" : "" %>>Incidente com dano ambiental</option>
+                                <option value="Near Miss" <%= user.categoria === "Near Miss" ? "selected" : "" %>>Near Miss</option>
+                                <option value="NIF" <%= user.categoria === "NIF" ? "selected" : "" %>>NIF</option>
+                                <option value="RIF" <%= user.categoria === "RIF" ? "selected" : "" %>>RIF</option>
+                                <option value="LTCF" <%= user.categoria === "LTCF" ? "selected" : "" %>>LTCF</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Seção</label>
+                            <input type="text" name="secao" class="form-control form-control-lg" placeholder="Enter Email"  value="<%= user.secao %>"required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone">Supervisor</label>
+                            <input type="text" name="supervisor" class="form-control form-control-lg" placeholder="Enter Phone"  value="<%= user.supervisor %>" required/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Select Image</label>
+                            <input type="file" name="image" class="form-control form-control-lg" />
+                            <img src="/<%= user.image %>" width="100" class="img-thumbnaill mt-1" >
+                        </div>
+                        <input type="hidden" name="old_image" value="<%= user.image %>">
+                        <div class="mb-3">
+                            <input type="submit" name="submit" value="Atualizar" class="btn btn-success btn-lg" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layout/footer') %>
